@@ -2,8 +2,6 @@ DROP DATABASE IF EXISTS asgbd_2024;
 
 CREATE DATABASE asgbd_2024;
 
-GRANT ALL ON asgbd_2024.* TO 'lpacheco'@'localhost';
-
 USE asgbd_2024;
 
 BEGIN WORK;
@@ -15,10 +13,10 @@ CREATE TABLE MUSICIAN (
 	death DATE,
 	gender VARCHAR(255) NOT NULL,
 	nationality VARCHAR(255) NOT NULL,
-	num_awards SMALLINT NOT NULL DEFAULT 0 CHECK (num_awards >= 0),
+	num_awards SMALLINT DEFAULT 0 CHECK (num_awards >= 0),
 	CONSTRAINT PK_MUSICIAN PRIMARY KEY(id_musician),
 	CONSTRAINT GENDER CHECK (gender IN ('M','F','NB')),
-	CONSTRAINT CHECK_DEATH CHECK (death IS NULL OR birth < death));
+    CONSTRAINT CHECK_DEATH CHECK (death IS NULL OR birth < death));
 
 CREATE TABLE BAND (
 	id_band SMALLINT,
