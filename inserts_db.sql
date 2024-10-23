@@ -1,10 +1,6 @@
--- SET search_path TO asgbd_2024;
+USE asgbd_2024;
 
 BEGIN WORK;
-
--- SET TRANSACTION READ WRITE;
-
--- SET datestyle = DMY;
 
 /* MUSICIAN */
 INSERT INTO MUSICIAN VALUES(1,'James Hetfield','03-08-1949',NULL,'M','American');
