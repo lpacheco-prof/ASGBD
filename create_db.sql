@@ -1,16 +1,18 @@
-DROP SCHEMA IF EXISTS asgbd_2024 CASCADE;
+-- DROP SCHEMA IF EXISTS asgbd_2024 CASCADE;
+DROP DATABASE IF EXISTS asgbd_2024;
 
-#CREATE SCHEMA asgbd_2024 AUTHORIZATION lpacheco;
+-- CREATE SCHEMA asgbd_2024 AUTHORIZATION lpacheco;
 CREATE DATABASE asgbd_2024;
 
-#GRANT ALL ON SCHEMA asgbd_2024 TO root;
-GRANT ALL PRIVILEGES ON asgbd_2024.* TO lpacheco;
+-- GRANT ALL ON SCHEMA asgbd_2024 TO root;
+GRANT ALL ON asgbd_2024.* TO 'lpacheco'@'localhost';
 
-SET search_path TO asgbd_2024;
+-- SET search_path TO asgbd_2024;
+USE asgbd_2024;
 
 BEGIN WORK;
 
-SET TRANSACTION READ WRITE;
+-- SET TRANSACTION READ WRITE;
 
 SET datestyle = DMY;
 
@@ -79,13 +81,13 @@ CREATE TABLE REPORT_MUSICIAN (
 	num_no_composer INTEGER NOT NULL DEFAULT 0 CHECK (num_no_composer >= 0),
 	CONSTRAINT PK_REPORT_MUSICIAN PRIMARY KEY(id_musician));
 
-CREATE TYPE REPORT_MUSICIAN_TYPE AS (
-	t_id_musician INTEGER,
-	t_num_bands INTEGER,
-	t_num_instruments INTEGER,
-	t_num_styles INTEGER,
-	t_num_origins INTEGER,
-	t_num_no_composer INTEGER
-);
+-- CREATE TYPE REPORT_MUSICIAN_TYPE AS (
+-- 	t_id_musician INTEGER,
+-- 	t_num_bands INTEGER,
+-- 	t_num_instruments INTEGER,
+-- 	t_num_styles INTEGER,
+-- 	t_num_origins INTEGER,
+-- 	t_num_no_composer INTEGER
+-- );
 
 COMMIT;
