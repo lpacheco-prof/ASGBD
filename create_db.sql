@@ -1,20 +1,12 @@
--- DROP SCHEMA IF EXISTS asgbd_2024 CASCADE;
 DROP DATABASE IF EXISTS asgbd_2024;
 
--- CREATE SCHEMA asgbd_2024 AUTHORIZATION lpacheco;
 CREATE DATABASE asgbd_2024;
 
--- GRANT ALL ON SCHEMA asgbd_2024 TO root;
 GRANT ALL ON asgbd_2024.* TO 'lpacheco'@'localhost';
 
--- SET search_path TO asgbd_2024;
 USE asgbd_2024;
 
 BEGIN WORK;
-
--- SET TRANSACTION READ WRITE;
-
-SET datestyle = DMY;
 
 CREATE TABLE MUSICIAN (
 	id_musician SMALLINT,
@@ -26,7 +18,7 @@ CREATE TABLE MUSICIAN (
 	num_awards SMALLINT NOT NULL DEFAULT 0 CHECK (num_awards >= 0),
 	CONSTRAINT PK_MUSICIAN PRIMARY KEY(id_musician),
 	CONSTRAINT GENDER CHECK (gender IN ('M','F','NB')),
-    CONSTRAINT CHECK_DEATH CHECK (death IS NULL OR birth < death));
+	CONSTRAINT CHECK_DEATH CHECK (death IS NULL OR birth < death));
 
 CREATE TABLE BAND (
 	id_band SMALLINT,
@@ -80,14 +72,5 @@ CREATE TABLE REPORT_MUSICIAN (
 	num_origins INTEGER NOT NULL DEFAULT 0 CHECK (num_origins >= 0),
 	num_no_composer INTEGER NOT NULL DEFAULT 0 CHECK (num_no_composer >= 0),
 	CONSTRAINT PK_REPORT_MUSICIAN PRIMARY KEY(id_musician));
-
--- CREATE TYPE REPORT_MUSICIAN_TYPE AS (
--- 	t_id_musician INTEGER,
--- 	t_num_bands INTEGER,
--- 	t_num_instruments INTEGER,
--- 	t_num_styles INTEGER,
--- 	t_num_origins INTEGER,
--- 	t_num_no_composer INTEGER
--- );
 
 COMMIT;
